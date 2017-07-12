@@ -1,0 +1,64 @@
+{
+  "name": "kaptan-http",
+  "version": "0.0.1",
+  "description": "HTTP service for Kaptan framework",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "test": "nyc mocha",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "typedoc": "typedoc --out docs --mode file",
+    "codecov": "nyc report --reporter=json && codecov -f coverage/*.json"
+  },
+  "files": [
+    "build/"
+  ],
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "include": [
+      "build/**/*.js"
+    ],
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "lcov"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibrahimduran/node-kaptan.git"
+  },
+  "keywords": [
+    "kaptan",
+    "http",
+    "web"
+  ],
+  "author": "Ibrahim Duran",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibrahimduran/node-kaptan-http/issues"
+  },
+  "homepage": "https://github.com/ibrahimduran/node-kaptan-http#readme",
+  "devDependencies": {
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "chai": "^4.0.2",
+    "codecov": "^2.2.0",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3",
+    "source-map-support": "^0.4.15",
+    "ts-node": "^3.1.0",
+    "typedoc": "^0.7.1",
+    "typescript": "^2.4.1"
+  },
+  "dependencies": {
+    "@types/node": "^8.0.7",
+    "kaptan": "0.0.1"
+  }
+}
