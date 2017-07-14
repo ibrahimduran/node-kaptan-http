@@ -8,7 +8,7 @@ import { get } from 'http';
 import { HTTP } from '../build';
 
 describe('Service/HTTP', function () {
-  const PORT = 5000;
+  const PORT = 55695;
   const kaptan = new Kaptan();
   let http: HTTP;
 
@@ -37,8 +37,13 @@ describe('Service/HTTP', function () {
   it('should run all middlewares', function (done) {
     var complete = () => { complete = () => { complete = done } };
 
-    http.once('request', () => (next: Function) => { next(); complete(); });
-    http.once('request', () => new Promise((resolve) => {
+    http.once('request', (request, response) => (next: Function) => {
+      request.foo = 'bar'; 
+      next();
+      complete();
+    });
+    http.once('request', (request, response) => new Promise((resolve) => {
+      assert.equal(request.foo, 'bar');
       resolve();
       complete();
     }));

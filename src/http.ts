@@ -1,4 +1,4 @@
-import { createServer, Server, IncomingMessage, ServerResponse} from 'http';
+import { createServer, Server, IncomingMessage, ServerResponse } from 'http';
 import { Kaptan, Service } from 'kaptan';
 
 export class HTTP extends Service {
@@ -15,30 +15,24 @@ export class HTTP extends Service {
     this.server.listen(HTTP.Options.PORT);
   }
 
-  private onRequest(request: IncomingMessage, response: ServerResponse) {
-    const middlewares = this.listeners('request');
+  public once(event: string | symbol, listener: (...args: any[]) => void): this {
+    Service.prototype.onceIntercepted.apply(this, arguments);
+    return this;
+  }
 
-    var runAllMiddlewares = () => {
-      if (middlewares.length === 0) return;
+  public on(event: string | symbol, listener: (...args: any[]) => void): this {
+    Service.prototype.onIntercepted.apply(this, arguments);
+    return this;
+  }
 
-      const middleware = middlewares.shift() as Function;
-      const returned = middleware(request, response);
+  private async onRequest(request: IncomingMessage, response: ServerResponse) {
+    const method = (<string>request.method).toLowerCase();
+    const url = <string>request.url;
 
-      if (returned) {
-        if (typeof returned === 'function') {
-          return returned(runAllMiddlewares);
-        }
-        else if (typeof returned === 'object' && returned.constructor.name === 'Promise') {
-          return returned.then(() => runAllMiddlewares());
-        }
-      }
-
-      runAllMiddlewares();
-    };
-
-    runAllMiddlewares();
-
-    this.emit('request:' + request.url, request, response);
+    await this.emitIntercepted('request', request, response)
+    await this.emitIntercepted(`request:${method}`, request, response);
+    await this.emitIntercepted(`request:${url}`, request, response);
+    await this.emitIntercepted(`request:${method}:${url}`, request, response);
   }
 }
 
