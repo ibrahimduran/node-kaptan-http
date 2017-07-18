@@ -94,6 +94,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="http.html#kaptan" class="tsd-kind-icon">kaptan</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected"><a href="http.html#logger" class="tsd-kind-icon">logger</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected"><a href="http.html#options" class="tsd-kind-icon">options</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="http.html#server" class="tsd-kind-icon">server</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="http.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
 							</ul>
@@ -126,12 +127,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="http.html#spawn" class="tsd-kind-icon">spawn</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
-							<h3>Object literals</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-object-literal tsd-parent-kind-class tsd-is-overwrite tsd-is-static"><a href="http.html#options" class="tsd-kind-icon">Options</a></li>
-							</ul>
-						</section>
 					</div>
 				</section>
 			</section>
@@ -141,20 +136,23 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new HTTP<span class="tsd-signature-symbol">(</span>kaptan<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Kaptan</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.html" class="tsd-signature-type">HTTP</a></li>
+						<li class="tsd-signature tsd-kind-icon">new HTTP<span class="tsd-signature-symbol">(</span>kaptan<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Kaptan</span>, options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/httpoptions.html" class="tsd-signature-type">HTTPOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="http.html" class="tsd-signature-type">HTTP</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides Service.__constructor</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/57601c7/src/http.ts#L9">http.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/66a1c89/src/http.ts#L6">http.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>kaptan: <span class="tsd-signature-type">Kaptan</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="../interfaces/httpoptions.html" class="tsd-signature-type">HTTPOptions</a><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="http.html" class="tsd-signature-type">HTTP</a></h4>
@@ -186,13 +184,24 @@
 						</ul>
 					</aside>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+					<a name="options" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> options</h3>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <a href="../interfaces/httpoptions.html" class="tsd-signature-type">HTTPOptions</a></div>
+					<aside class="tsd-sources">
+						<p>Overrides Service.options</p>
+						<ul>
+							<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/66a1c89/src/http.ts#L5">http.ts:5</a></li>
+						</ul>
+					</aside>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="server" class="tsd-anchor"></a>
 					<h3>server</h3>
 					<div class="tsd-signature tsd-kind-icon">server<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Server</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/57601c7/src/http.ts#L9">http.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/66a1c89/src/http.ts#L6">http.ts:6</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -410,7 +419,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.on</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/57601c7/src/http.ts#L23">http.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/66a1c89/src/http.ts#L23">http.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -499,7 +508,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/57601c7/src/http.ts#L28">http.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/66a1c89/src/http.ts#L28">http.ts:28</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -526,7 +535,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides EventEmitter.once</p>
 								<ul>
-									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/57601c7/src/http.ts#L18">http.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/66a1c89/src/http.ts#L18">http.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -804,7 +813,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Service.copy</p>
 								<ul>
-									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:11</li>
+									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:13</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -831,7 +840,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Service.create</p>
 								<ul>
-									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:12</li>
+									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:14</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -858,7 +867,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from Service.getServiceName</p>
 								<ul>
-									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:14</li>
+									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:16</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -929,14 +938,14 @@
 					<a name="spawn" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> spawn</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
-						<li class="tsd-signature tsd-kind-icon">spawn<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServiceConstructor</span>, container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServiceContainer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Service</span></li>
+						<li class="tsd-signature tsd-kind-icon">spawn<span class="tsd-signature-symbol">(</span>service<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServiceConstructor</span>, container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServiceContainer</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">__type</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Service</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Inherited from Service.spawn</p>
 								<ul>
-									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:13</li>
+									<li>Defined in /home/iduran/projects/node-kaptan-http/node_modules/kaptan/build/service/service.d.ts:15</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -947,34 +956,13 @@
 								<li>
 									<h5>container: <span class="tsd-signature-type">ServiceContainer</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">__type</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Service</span></h4>
 						</li>
 					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Object literals</h2>
-				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-class tsd-is-overwrite tsd-is-static">
-					<a name="options" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Options</h3>
-					<div class="tsd-signature tsd-kind-icon">Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<p>Overrides Service.Options</p>
-						<ul>
-							<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/57601c7/src/http.ts#L5">http.ts:5</a></li>
-						</ul>
-					</aside>
-					<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-object-literal">
-						<a name="options.port" class="tsd-anchor"></a>
-						<h3>PORT</h3>
-						<div class="tsd-signature tsd-kind-icon">PORT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;process.env.HTTP_PORT || process.env.PORT || 80</span></div>
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/57601c7/src/http.ts#L6">http.ts:6</a></li>
-							</ul>
-						</aside>
-					</section>
 				</section>
 			</section>
 		</div>
@@ -1001,6 +989,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-protected">
 								<a href="http.html#logger" class="tsd-kind-icon">logger</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-protected">
+								<a href="http.html#options" class="tsd-kind-icon">options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="http.html#server" class="tsd-kind-icon">server</a>
@@ -1076,9 +1067,6 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="http.html#spawn" class="tsd-kind-icon">spawn</a>
-							</li>
-							<li class=" tsd-kind-object-literal tsd-parent-kind-class tsd-is-overwrite tsd-is-static">
-								<a href="http.html#options" class="tsd-kind-icon">Options</a>
 							</li>
 						</ul>
 					</li>
