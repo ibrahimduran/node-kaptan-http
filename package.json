@@ -1,6 +1,6 @@
 {
   "name": "kaptan-http",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "HTTP service for Kaptan framework",
   "main": "build/index.js",
   "types": "build/index.d.ts",
