@@ -2,17 +2,17 @@ import { createServer, Server, IncomingMessage, ServerResponse } from 'http';
 import { Kaptan, Service } from 'kaptan';
 
 export class HTTP extends Service {
-  public static Options: HTTPOptions = {
-    PORT: process.env.HTTP_PORT || process.env.PORT || 80
-  };
-
+  protected options: HTTPOptions;
   public readonly server: Server;
 
-  constructor(kaptan: Kaptan) {
-    super(kaptan);
+  constructor(kaptan: Kaptan, options: HTTPOptions = {}) {
+    super(kaptan, {
+      PORT: process.env.HTTP_PORT || process.env.PORT || 80,
+      ...options
+    });
 
     this.server = createServer(this.onRequest.bind(this));
-    this.server.listen(HTTP.Options.PORT);
+    this.server.listen(this.options.PORT);
   }
 
   public once(event: string | symbol, listener: (...args: any[]) => void): this {
