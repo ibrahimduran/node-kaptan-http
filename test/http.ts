@@ -1,5 +1,6 @@
 import 'mocha';
 import { assert } from 'chai';
+import * as getPort from 'get-port';
 
 import { Kaptan } from 'kaptan';
 import { createConnection } from 'net';
@@ -8,11 +9,14 @@ import { get } from 'http';
 import { HTTP } from '../build';
 
 describe('Service/HTTP', function () {
-  const PORT = 55695;
   const kaptan = new Kaptan();
+  let PORT = 55695;
   let http: HTTP;
 
-  kaptan.use(HTTP, { PORT });
+  before(async function () {
+    PORT = await getPort();
+    kaptan.use(HTTP, { PORT });
+  });
 
   it('should start the service', function (done) {
     kaptan.start();
