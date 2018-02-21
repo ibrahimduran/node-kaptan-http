@@ -62,6 +62,6 @@
   },
   "dependencies": {
     "@types/node": "^8.0.7",
-    "kaptan": "0.0.8"
+    "kaptan": "0.0.13"
   }
 }
