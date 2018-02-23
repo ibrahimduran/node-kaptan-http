@@ -82,7 +82,7 @@
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias"><a href="globals.html#middlewarecallback" class="tsd-kind-icon">Middleware<wbr>Callback</a></li>
+								<li class="tsd-kind-type-alias"><a href="globals.html#middleware" class="tsd-kind-icon">Middleware</a></li>
 							</ul>
 						</section>
 					</div>
@@ -91,12 +91,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
-					<a name="middlewarecallback" class="tsd-anchor"></a>
-					<h3>Middleware<wbr>Callback</h3>
-					<div class="tsd-signature tsd-kind-icon">Middleware<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<a name="middleware" class="tsd-anchor"></a>
+					<h3>Middleware</h3>
+					<div class="tsd-signature tsd-kind-icon">Middleware<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/66a1c89/src/http.ts#L39">http.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/ibrahimduran/node-kaptan-http/blob/aceb35d/src/http.ts#L4">http.ts:4</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -104,7 +104,7 @@
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-siganture">
 								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IncomingMessage</span>, response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerResponse</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Function</span></li>
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">IncomingMessage</span>, response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ServerResponse</span>, next<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">void</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
@@ -116,10 +116,25 @@
 											<li>
 												<h5>response: <span class="tsd-signature-type">ServerResponse</span></h5>
 											</li>
+											<li>
+												<h5>next: <span class="tsd-signature-type">function</span></h5>
+												<ul class="tsd-parameters">
+													<li class="tsd-parameter-siganture">
+														<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+															<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+														</ul>
+														<ul class="tsd-descriptions">
+															<li class="tsd-description">
+																<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+															</li>
+														</ul>
+													</li>
+												</ul>
+											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>
 											<span class="tsd-signature-symbol"> | </span>
-											<span class="tsd-signature-type">Function</span>
+											<span class="tsd-signature-type">void</span>
 										</h4>
 									</li>
 								</ul>
@@ -146,7 +161,7 @@
 						<a href="interfaces/httpoptions.html" class="tsd-kind-icon">HTTPOptions</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#middlewarecallback" class="tsd-kind-icon">Middleware<wbr>Callback</a>
+						<a href="globals.html#middleware" class="tsd-kind-icon">Middleware</a>
 					</li>
 				</ul>
 			</nav>
