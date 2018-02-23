@@ -18,42 +18,67 @@ describe('Service/HTTP', function () {
     kaptan.use(HTTP, { PORT });
   });
 
-  it('should start the service', function (done) {
-    kaptan.start();
+  it('should start the service', async function () {
+    await kaptan.start();
 
     http = kaptan.services.instances.get('HTTP') as HTTP;
-    assert.equal(Boolean(http), true);
-
-    http.server.on('listening', () => done());
+    assert.equal(Boolean(http), true, 'HTTP service spwan error');
+    assert.equal(http.server.listening, true);
   });
 
   it('should accept connections', function (done) {
     const addr = http.server.address();
-    createConnection({ port: addr.port, host: addr.address })
-      .on('connect', () => done());
+    const socket = createConnection({ port: addr.port, host: addr.address })
+      .on('connect', function () {
+        if (socket.readable) {
+          done();
+        } else {
+          done('Server doesn\'t accept conections');
+        }
+
+        socket.end();
+        socket.destroy();
+      });
   });
 
-  it('should handle requests', function (done) {
-    http.once('request:/', (request, response) => done());
-    get('http://127.0.0.1:' + PORT);
-  });
+  const data = ['hello http', 'hello kaptan', 'hello service'];
 
-  it('should run all middlewares', function (done) {
-    var complete = () => { complete = () => { complete = done } };
-
-    http.once('request', (request, response) => (next: Function) => {
-      request.foo = 'bar'; 
-      next();
-      complete();
+  it('should add middleware', function () {
+    http.use((request, response) => {
+      response.write(data[0]);
     });
-    http.once('request', (request, response) => new Promise((resolve) => {
-      assert.equal(request.foo, 'bar');
-      resolve();
-      complete();
-    }));
-    http.once('request', () => 'hello');
-    http.once('request', () => complete());
 
-    get('http://127.0.0.1:' + PORT);
+    http.use(async (request, response) => {
+      response.write(data[1]);
+    });
+
+    http.use((request, response, next) => {
+      response.end(data[2]);
+      next();
+    });
+
+    http.use((request, response) => {
+      throw new Error('This middleware should not have been called, response is ended');
+    });
   });
+
+  it('should run middlewares', function (done) {
+    get('http://127.0.0.1:' + PORT, res => {
+      let body = '';
+
+      res.on('data', chunk => {
+        body += chunk;
+      });
+
+      res.on('end', () => {
+        assert.equal(data.join(''), body, 'Response body is not equal to pre-defined data');
+        done();
+      });
+    });
+  });
+  
+  after (async function () {
+    await kaptan.stop();
+    assert.equal(http.server.listening, false, 'HTTP server still running after stop being called');
+  })
 });

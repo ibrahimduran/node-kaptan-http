@@ -1,7 +1,15 @@
 import { createServer, Server, IncomingMessage, ServerResponse } from 'http';
 import { Kaptan, Service } from 'kaptan';
 
+export type Middleware = (
+  request: IncomingMessage,
+  response: ServerResponse,
+  next: () => void
+) => Promise<any> | void
+
 export class HTTP extends Service {
+  private middlewares: Middleware[] = []
+  
   protected options: HTTPOptions;
   public readonly server: Server;
 
@@ -11,35 +19,48 @@ export class HTTP extends Service {
       ...options
     });
 
-    this.server = createServer(this.onRequest.bind(this));
+    this.server = createServer(this.handler.bind(this));
+  }
+
+  use (fn: Middleware) {
+    this.middlewares.push(fn)
+  }
+
+  async start () {
+    this.logger.text(`listening on :${this.options.PORT}`)
     this.server.listen(this.options.PORT);
   }
 
-  public once(event: string | symbol, listener: (...args: any[]) => void): this {
-    Service.prototype.onceIntercepted.apply(this, arguments);
-    return this;
+  stop () {
+    return new Promise<void>((resolve, reject) => {
+      this.server.close(() => resolve())
+    })
   }
 
-  public on(event: string | symbol, listener: (...args: any[]) => void): this {
-    Service.prototype.onIntercepted.apply(this, arguments);
-    return this;
-  }
+  private async handler (request: IncomingMessage, response: ServerResponse, mc = 0) {
+    if (mc >= this.middlewares.length || response.finished) {
+      if (response.writable) {
+        response.end()
+      }
 
-  private async onRequest(request: IncomingMessage, response: ServerResponse) {
-    const method = (<string>request.method).toLowerCase();
-    const url = <string>request.url;
+      return
+    }
 
-    await this.emitIntercepted('request', request, response)
-    await this.emitIntercepted(`request:${method}`, request, response);
-    await this.emitIntercepted(`request:${url}`, request, response);
-    await this.emitIntercepted(`request:${method}:${url}`, request, response);
+    let next = () => {
+      this.handler(request, response, mc + 1)
+      next = () => {}
+    }
+    
+    const returned = this.middlewares[mc](request, response, next)
+
+    if (returned !== undefined && returned instanceof Promise) {
+      await returned
+      next()
+    } else if (this.middlewares[mc].length <= 2) {
+      next()
+    }
   }
 }
-
-export type MiddlewareCallback = (
-  request: IncomingMessage,
-  response: ServerResponse
-) => void | Function;
 
 export interface HTTPOptions {
   PORT?: number | string
