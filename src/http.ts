@@ -39,10 +39,6 @@ export class HTTP extends Service {
 
   private async handler (request: IncomingMessage, response: ServerResponse, mc = 0) {
     if (mc >= this.middlewares.length || response.finished) {
-      if (response.writable) {
-        response.end()
-      }
-
       return
     }
 
